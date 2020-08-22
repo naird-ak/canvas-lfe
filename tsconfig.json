@@ -4,6 +4,7 @@
       "paths": {
         "~*": ["./*"]
       },
+      "noEmit": true
     },
     "include": ["src/**/*"]
   }
