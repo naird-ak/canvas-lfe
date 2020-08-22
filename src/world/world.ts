@@ -1,38 +1,52 @@
 import CanvasContext from "~renderer/canvas-render";
 import { Coordinates } from "./interfaces";
 import Entity from "./entity";
-import { generateRandomNumber, generateLifeSpanTime } from './utilities';
+import { generateRandomNumber } from './utilities';
+import Collision from "~physics/collision";
 
 export default class World {
     private size: Coordinates;
     private entities: Entity[];
-    private renderContext: CanvasContext;
-    private lifeSpan = 100;
+    private collision: Collision;
 
-    constructor(canvas: CanvasContext) {
-        this.renderContext = canvas;
+    constructor(private canvas: CanvasContext) {
         this.size = {
             v: canvas.canvasCtx.canvas.height,
             h: canvas.canvasCtx.canvas.width
         };
     }
 
-    spawnEntities(population: number = 100) {
+    spawnEntities(population: number = 10) {
         this.entities = [];
         for (let pop = 0; pop < population; pop++) {
             const positionV = generateRandomNumber(this.size.v);
             const positionH = generateRandomNumber(this.size.h);
             this.entities.push(new Entity({ v: positionV, h: positionH }));
         }
+
+        this.injectCollidedEntities();
+        this.collision = new Collision(this.entities);
     }
 
-    renderEntities() {
-        this.renderContext.renderEntities(this.entities);
+    injectCollidedEntities() {
+        this.entities.push(new Entity({ v: 100, h: 10 }));
+        this.entities.push(new Entity({ v: 100, h: 10 }));
     }
 
     runWorld() {
-        this.entities.forEach((entity) => entity.live());
+        this.keepEntitiesAlive();
+        this.collision.checkCollision();
         this.renderEntities();
         requestAnimationFrame(() => this.runWorld());
     }
+
+    keepEntitiesAlive() {
+        this.entities.forEach((entity) => entity.live());
+    }
+
+    renderEntities() {
+        this.canvas.renderEntities(this.entities);
+    }
+
+    
 }
