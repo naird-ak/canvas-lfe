@@ -1,10 +1,7 @@
 import Entity from "~world/entity";
 
 export default class CanvasContext {
-    canvasCtx: CanvasRenderingContext2D;
-    constructor(ctx: CanvasRenderingContext2D) {
-        this.canvasCtx = ctx;
-    }
+    constructor(public canvasCtx: CanvasRenderingContext2D) {}
 
     renderEntities(entities: Entity[]) {
         entities.forEach(entity => {
