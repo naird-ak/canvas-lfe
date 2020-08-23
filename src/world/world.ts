@@ -25,8 +25,10 @@ export default class World {
             this.entities.push(new Entity({ v: positionV, h: positionH }));
         }
 
-        this.injectCollidedEntities();
-        this.collision = new Collision(this.entities, this.logger);
+        this.entities.sort(ent => ent.velocity.speed)
+        console.log(this.entities[0])
+        // this.injectCollidedEntities();
+        this.collision = new Collision(this.entities, this.logger, this.size);
     }
 
     injectCollidedEntities() {
@@ -51,6 +53,4 @@ export default class World {
     renderEntities() {
         this.canvas.renderEntities(this.entities);
     }
-
-    
 }

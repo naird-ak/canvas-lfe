@@ -4,6 +4,7 @@ export default class CanvasContext {
     constructor(public canvasCtx: CanvasRenderingContext2D) {}
 
     renderEntities(entities: Entity[]) {
+        this.clearScreen();
         entities.forEach(entity => {
             this.canvasCtx.fillStyle = entity.color;
             this.canvasCtx.beginPath();
@@ -11,6 +12,10 @@ export default class CanvasContext {
             this.canvasCtx.fill();
         })
 
+    }
+
+    clearScreen() {
+        this.canvasCtx.clearRect(0, 0, this.canvasCtx.canvas.width, this.canvasCtx.canvas.height)
     }
 
 }
