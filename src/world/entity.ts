@@ -1,5 +1,5 @@
 import { Coordinates, Velocity } from "./interfaces";
-import { generateUuid, generateRandomVelocity } from "./utilities";
+import { generateUuid, generateRandomVelocity, generateRandomNumber } from "./utilities";
 
 const lifeStateColors = ["#FFFFFF", "#8b0000", "#FF0000"];
 
@@ -16,6 +16,7 @@ export default class Entity {
         this.size = 5;
         this.color = lifeStateColors[0];
         this.velocity = generateRandomVelocity();
+        // this.velocity = new Velocity(generateRandomNumber(0.5, -0.5), new Coordinates(0,0));
     }
 
     live() {
@@ -28,8 +29,8 @@ export default class Entity {
     }
 
     move() {
-        this.position.h += this.velocity.direction.h;
-        this.position.v += this.velocity.direction.v;
+        this.position.h += this.velocity.direction.h ;
+        this.position.v += this.velocity.direction.v ;
     }
 }
 

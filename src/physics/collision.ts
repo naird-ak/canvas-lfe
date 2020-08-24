@@ -18,9 +18,9 @@ export default class Collision {
 
                 if (this.checkBoundingEntityOverlap(ent1, ent2)) {
                     if (this.checkEntityCollision(ent1, ent2)) {
-                        this.logger.logMessage(ent1.id + " Collided with " + ent2.id + " at position ");
-                        this.logger.logMessage("Position " + ent1.position.h);
-                        this.logger.logMessage("Position " + ent2.position.v);
+                        // this.logger.logMessage(ent1.id + " Collided with " + ent2.id + " at position ");
+                        // this.logger.logMessage("Position " + ent1.position.h);
+                        // this.logger.logMessage("Position " + ent2.position.v);
                         this.collide(ent1, ent2);
                     }
                 }

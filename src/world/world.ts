@@ -17,23 +17,15 @@ export default class World {
         };
     }
 
-    spawnEntities(population: number = 50) {
+    spawnEntities(population: number = 100) {
         this.entities = [];
         for (let pop = 0; pop < population; pop++) {
             const positionV = generateRandomNumber(this.size.v);
             const positionH = generateRandomNumber(this.size.h);
             this.entities.push(new Entity({ v: positionV, h: positionH }));
         }
-
-        this.entities.sort(ent => ent.velocity.speed)
-        console.log(this.entities[0])
-        // this.injectCollidedEntities();
+        
         this.collision = new Collision(this.entities, this.logger, this.size);
-    }
-
-    injectCollidedEntities() {
-        this.entities.push(new Entity({ v: 105, h: 10 }));
-        this.entities.push(new Entity({ v: 100, h: 10 }));
     }
 
     runWorld() {
@@ -41,7 +33,7 @@ export default class World {
         this.collision.checkCollision();
         this.renderEntities();
         requestAnimationFrame((time) => {
-            this.logger.renderMessage(time);
+            // this.logger.renderMessage(time);
             this.runWorld()
         });
     }
