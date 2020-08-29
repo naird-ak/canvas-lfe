@@ -4,7 +4,8 @@
   "description": "��#\u0000 \u0000c\u0000a\u0000n\u0000v\u0000a\u0000s\u0000-\u0000l\u0000f\u0000e\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc && parcel src/index.html"
+    "dev": "tsc && parcel src/index.html",
+    "build": "parcel build src/index.html"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "homepage": "https://github.com/naird-ak/canvas-lfe#readme",
   "dependencies": {
     "typescript": "^4.0.2"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
   }
 }
